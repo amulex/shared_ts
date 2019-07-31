@@ -1,5 +1,5 @@
 {
-  "name": "shared-ts",
+  "name": "@devlegal/shared-ts",
   "description": "Shared libs for Live Widget Typescript projects",
   "version": "0.0.1",
   "main": "lib/index.js",
@@ -36,5 +36,8 @@
   "keywords": [],
   "author": "Amulex devlegal team",
   "license": "ISC",
-  "homepage": "https://github.com/amulex/shared_ts#readme"
+  "homepage": "https://github.com/amulex/shared_ts#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
