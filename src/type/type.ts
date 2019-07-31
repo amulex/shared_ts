@@ -8,15 +8,19 @@ export type Dict<T> = { [K: string]: T };
 
 export type Primitive = string | number | boolean | null | undefined;
 
-export type DeepReadonly<T> = T extends Primitive | RegExp | Function | Array<infer U> | Node ? T : DeepReadonlyObject<T>;
+export type DeepReadonly<T> = T extends Primitive | RegExp | ((...args: any) => any) | Array<infer U> | Node
+  ? T
+  : DeepReadonlyObject<T>;
 type DeepReadonlyObject<T> = {
-    readonly [P in keyof T]: DeepReadonly<T[P]>
-    };
+  readonly [P in keyof T]: DeepReadonly<T[P]>;
+};
 
-export type DeepPartial<T> = T extends Primitive | RegExp | Function | Array<infer U> | Node ? T : DeepPartialObject<T>;
+export type DeepPartial<T> = T extends Primitive | RegExp | ((...args: any) => any) | Array<infer U> | Node
+  ? T
+  : DeepPartialObject<T>;
 type DeepPartialObject<T> = {
-    [P in keyof T]?: DeepPartial<T[P]>
-    };
+  [P in keyof T]?: DeepPartial<T[P]>;
+};
 
 export type Without<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -24,9 +28,9 @@ export type Without<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
  * Refines types of Object methods.
  */
 export const Obj = {
-    keys: <T, K extends keyof T>(obj: T): K[] => {
-        return <K[]>Object.keys(obj);
-    }
+  keys: <T, K extends keyof T>(obj: T): K[] => {
+    return Object.keys(obj) as K[];
+  },
 };
 
 export type MimeType = string;
@@ -42,14 +46,14 @@ export type HandleMessage = HandleEvent<MessageEvent>;
  * OpenViduRole from openvidu-node-client
  */
 export enum OpenViduRole {
-    SUBSCRIBER = 'SUBSCRIBER',
-    PUBLISHER = 'PUBLISHER',
-    MODERATOR = 'MODERATOR'
+  SUBSCRIBER = 'SUBSCRIBER',
+  PUBLISHER = 'PUBLISHER',
+  MODERATOR = 'MODERATOR',
 }
 
 /**
  * RecordingMode from openvidu-node-client
  */
 export enum RecordingMode {
-    ALWAYS = 'ALWAYS'
+  ALWAYS = 'ALWAYS',
 }
